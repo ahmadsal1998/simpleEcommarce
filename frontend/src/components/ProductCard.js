@@ -14,7 +14,6 @@ const ProductCard = (props) => {
   const { grid, data } = props;
   const dispatch = useDispatch();
 
-  console.log(data);
   let location = useLocation();
 
   const addToWish = (id) => {
@@ -68,7 +67,7 @@ const ProductCard = (props) => {
               </div>
               <div className="product-details">
                 <h6 className="brand">{item?.brand}</h6>
-                <h5 className="product-title">{data[item]?.title}</h5>
+                <h5 className="product-title">{item?.title}</h5>
                 <ReactStars
                   count={5}
                   size={24}
@@ -82,7 +81,7 @@ const ProductCard = (props) => {
                   }`}
                   dangerouslySetInnerHTML={{ __html: item?.description }}
                 ></p>
-                <p className="price">$ {data[item]?.price}</p>
+                <p className="price">$ {item?.price}</p>
               </div>
 
               <div className="action-bar position-absolute">
