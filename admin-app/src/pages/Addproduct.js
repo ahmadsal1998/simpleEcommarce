@@ -98,8 +98,8 @@ const Addproduct = () => {
      setTimeout(() =>{
       dispatch(resetState());
 
-     // navigate("/admin/list-product");
-     }, 3000);
+    //  navigate("/admin/list-product");
+     }, 300);
     },
   });
 
