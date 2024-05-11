@@ -6,7 +6,7 @@ import Container from "../components/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik, useGormik } from "formik";
 import * as yup from "yup";
-import { loginUser } from "../features/user/userSlice";
+import { createAnOrder, loginUser } from "../features/user/userSlice";
 
 const shippingSchema = yup.object({
   firstName: yup.string().required("First name is required"),
@@ -23,8 +23,7 @@ const Checkout = () => {
   const cartState = useSelector((state) => state.auth.cartProducts);
   const [totalAmount, setToatalAmount] = useState(null);
   const [shippingInfo, setshippingInfo] = useState(null);
-
-
+  const [cartProductState, setcartProductState] = useState([]);
 
   useEffect(() => {
     let sum = 0;
@@ -47,9 +46,42 @@ const Checkout = () => {
     },
     validationSchema: shippingSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values));
+      setshippingInfo(values);
+      setTimeout(() => {
+        checkout();
+      }, 300);
     },
+    
   });
+    console.log(shippingInfo);
+
+
+  useEffect(() => {
+    let items = [];
+    for (let index = 0; index < cartState?.length; index++) {
+      items.push({
+        product: cartState[index].productId._id,
+        quantity: cartState[index].quantity,
+        color: cartState[index].color._id,
+        price: cartState[index].price,
+      });
+    }
+    setcartProductState(items);
+  }, []);
+  console.log(cartProductState);
+  const checkout = () => {
+    dispatch(
+      createAnOrder({
+        totalPrice: totalAmount,
+        totalPriceAfterDiscount: totalAmount,
+        orderItems: cartProductState,
+        shippingInfo
+
+      })
+    );
+
+    // navigate('/cart');
+  };
   return (
     <>
       <Container class1="checkout-wrapper py-5 home-wrapper-2">
@@ -213,7 +245,7 @@ const Checkout = () => {
                     onChange={formik.handleChange("pincode")}
                     onBlur={formik.handleBlur("pincode")}
                   />
-                      <div className="error ms-2 my-1">
+                  <div className="error ms-2 my-1">
                     {formik.touched.pincode && formik.errors.pincode}
                   </div>
                 </div>

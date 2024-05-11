@@ -1,4 +1,4 @@
-const Razorpay =require("razorpay");
+/*onst Razorpay =require("razorpay");
 const instance = new Razorpay({
     key_id: "",
     key_secret:"",
@@ -22,6 +22,7 @@ const paymentVerification = async (req,res) => {
    res.json({
     RazorpayOrderId,RazorpayPaymentId
    })
-}*/
+}
 
 module.exports = {checkout,paymentVerification}
+*/

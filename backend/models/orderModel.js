@@ -40,7 +40,8 @@ var orderSchema = new mongoose.Schema(
       },
 
     },
-    paymentInfo: {
+
+  /*  paymentInfo: {
       razorpayOrderId: {
         type: String,
         required: true,
@@ -49,7 +50,7 @@ var orderSchema = new mongoose.Schema(
         type: String,
         required: true,
       },
-    },
+    },*/
     orderItems: [
       {
         product: {
