@@ -10,15 +10,18 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const cartState = useSelector(state => state?.auth?.cartProducts)
-  const [total,setTotal] = useState(null);
+  const cartState = useSelector((state) => state?.auth?.cartProducts);
+  const authState = useSelector((state) => state.auth);
+  const [total, setTotal] = useState(null);
   useEffect(() => {
-    let sum =0;
-    for(let index =0; index < cartState?.length; index++){
-      sum = sum + (Number(cartState[index].quantity)* Number(cartState[index].price));
+    let sum = 0;
+    for (let index = 0; index < cartState?.length; index++) {
+      sum =
+        sum +
+        Number(cartState[index].quantity) * Number(cartState[index].price);
       setTotal(sum);
     }
-  })
+  });
   return (
     <>
       <header className="header-top-stip py-3">
@@ -66,7 +69,10 @@ const Header = () => {
             <div className="col-5">
               <div className="header-upper-links d-flex align-items-center justify-content-between">
                 <div>
-                  <Link to='/compare-product' className="d-flex align-items-center gap-10 text-white">
+                  <Link
+                    to="/compare-product"
+                    className="d-flex align-items-center gap-10 text-white"
+                  >
                     <img src={compare} alt="compare" />
                     <p className="mb-0">
                       Compare <br /> Products
@@ -74,7 +80,10 @@ const Header = () => {
                   </Link>
                 </div>
                 <div>
-                  <Link to="/wishlist" className="d-flex align-items-center gap-10 text-white">
+                  <Link
+                    to="/wishlist"
+                    className="d-flex align-items-center gap-10 text-white"
+                  >
                     <img src={wishlist} alt="wishlist" />
                     <p className="mb-0">
                       Favourite <br /> wishlist
@@ -82,20 +91,35 @@ const Header = () => {
                   </Link>
                 </div>
                 <div>
-                  <Link to="/login" className="d-flex align-items-center gap-10 text-white">
+                  <Link
+                    to={authState?.user === null ? "/login" : ""}
+                    className="d-flex align-items-center gap-10 text-white"
+                  >
                     <img src={user} alt="user" />
-                    <p className="mb-0">
-                      Log in <br /> My Account
-                    </p>
+                    {authState?.user === null ? (
+                      <p className="mb-0">
+                        Login <br />
+                        My Acount
+                      </p>
+                    ) : (
+                      <p className="mb-0">
+                        Welcome {authState?.user?.firstname}
+                      </p>
+                    )}
                   </Link>
                 </div>
 
                 <div>
-                  <Link to="/cart" className="d-flex align-items-center gap-10 text-white">
+                  <Link
+                    to="/cart"
+                    className="d-flex align-items-center gap-10 text-white"
+                  >
                     <img src={cart} alt="cart" />
                     <div className="d-flex flex-column gap-10">
-                      <span className="badge bg-white text-dark">{cartState?.length ? cartState.length : 0}</span>
-                      <p className="mb-0"> {total ? total :0}$ </p>
+                      <span className="badge bg-white text-dark">
+                        {cartState?.length ? cartState.length : 0}
+                      </span>
+                      <p className="mb-0"> {total ? total : 0}$ </p>
                     </div>
                   </Link>
                 </div>
@@ -125,9 +149,7 @@ const Header = () => {
                     </button>
                     <ul className="dropdown-menu">
                       <li>
-                        <Link className="dropdown-item text-white" to="">
-                          
-                        </Link>
+                        <Link className="dropdown-item text-white" to=""></Link>
                       </li>
                       <li>
                         <Link className="dropdown-item text-white" to="">
@@ -146,6 +168,8 @@ const Header = () => {
                   <div className="d-flex align-items-center gap-15">
                     <NavLink to="/">HOME</NavLink>
                     <NavLink to="/product">OUR STORE</NavLink>
+                    <NavLink to="/my-orders">My Orders</NavLink>
+
                     <NavLink to="/blogs">BLOGS</NavLink>
                     <NavLink to="/contact">CONTACT</NavLink>
                   </div>

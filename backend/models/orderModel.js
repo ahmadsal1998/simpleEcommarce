@@ -81,7 +81,7 @@ var orderSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    totalPrice: {
+    totalPriceAfterDiscount: {
       type: Number,
       required: true,
     },

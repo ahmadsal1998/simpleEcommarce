@@ -64,6 +64,7 @@ const Checkout = () => {
         quantity: cartState[index].quantity,
         color: cartState[index].color._id,
         price: cartState[index].price,
+        finalprice: cartState[index].totalPriceAfterDiscount,
       });
     }
     setcartProductState(items);
