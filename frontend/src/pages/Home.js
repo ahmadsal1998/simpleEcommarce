@@ -149,7 +149,7 @@ const Home = () => {
           </div>
         </div>
       </Container>
-
+{/*
       <Container class1="home-wrapper-2 py-5">
         <div className="row">
           <div className="col-12">
@@ -214,7 +214,7 @@ const Home = () => {
           </div>
         </div>
       </Container>
-
+            */}
       <Container class1="featured-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-12">

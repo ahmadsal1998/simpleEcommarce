@@ -1,4 +1,4 @@
-/*
+
 const nodemailer= require("nodemailer");
 const asyncHandler= require("express-async-handler");
 
@@ -30,4 +30,3 @@ let info = await transporter.sendMail({
 
 });
 module.exports= sendEmail;
-*/
